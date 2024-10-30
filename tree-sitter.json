@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "conl",
+      "camelcase": "CONL",
+      "scope": "source.conl",
+      "path": ".",
+      "file-types": ["conl"],
+      "injection-regex": "^conl$",
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "CONL is a post-minimalist, human-centric configuration language.",
+    "authors": [
+      {
+        "name": "Conrad Irwin",
+        "email": "conrad.irwin@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/ConradIrwin/tree-sitter-conl"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

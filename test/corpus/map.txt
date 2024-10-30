@@ -1,0 +1,184 @@
+==================
+Empty
+==================
+
+---
+
+(source_file)
+
+==================
+Map
+==================
+
+a = a
+b = b
+
+---
+
+(source_file
+  (map
+    (pair
+        (key)
+        (value))
+    (pair
+        (key)
+        (value))))
+
+==================
+Nested Map
+==================
+
+a
+  b = b
+
+
+---
+
+(source_file
+  (map
+    (pair
+        (key)
+        (map
+        (pair
+            (key)
+            (value))))))
+
+==================
+Nested Closed
+==================
+
+a
+  b = b
+c = c
+
+---
+
+(source_file
+  (map
+    (pair
+        (key)
+        (map
+            (pair
+                (key)
+                (value)))
+        )
+    (pair
+        (key)
+        (value))))
+
+==================
+Nested Double Closed
+==================
+
+a
+  b
+    c = c
+d = d
+
+---
+
+(source_file
+  (map
+    (pair
+        (key)
+        (map
+            (pair
+                (key)
+                (map
+                    (pair
+                    (key)
+                    (value)))
+                ))
+        )
+    (pair
+        (key)
+        (value))))
+
+==================
+Nested Half Closed
+==================
+
+a
+  b
+    c = c
+  d = d
+
+---
+
+(source_file
+  (map
+    (pair
+        (key)
+        (map
+            (pair
+                (key)
+                (map
+                    (pair
+                    (key)
+                    (value)))
+                )
+            (pair
+                (key)
+                (value)))
+        )))
+
+==================
+Commentier
+==================
+
+# a
+a
+  b
+    # empty
+  # no more
+
+---
+
+(source_file
+  (map
+    (comment)
+    (pair
+        (key)
+        (map
+            (pair
+                (key)
+                (map
+                    (comment))
+                )
+            (comment))
+        )))
+
+==================
+Inline comments
+==================
+
+a # a
+
+  b = # comment
+    c = c # comment
+
+d =#
+  #
+---
+(source_file
+    (map
+    (pair
+        (key)
+        (comment)
+        (map
+        (pair
+            (key)
+            (comment)
+            (map
+            (pair
+                (key)
+                (value)
+                (comment)))
+            ))
+        )
+    (pair
+        (key)
+        (comment)
+        (map
+        (comment))
+        )))

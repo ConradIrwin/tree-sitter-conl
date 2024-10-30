@@ -1,0 +1,118 @@
+==================
+Escapes
+==================
+
+"_"=#= = a"# =
+"{123} = "{}
+
+---
+
+(source_file
+    (map
+    (pair
+        (key
+            (escape_sequence)
+            (escape_sequence))
+        (value
+          (escape_sequence)))
+    (pair
+        (key
+            (escape_sequence))
+        (value
+          (empty)))))
+
+==================
+Comments
+==================
+
+a = a#
+b = a #
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (value))
+    (pair
+        (key)
+        (value)
+        (comment))))
+
+==================
+Multiline
+==================
+
+a = """
+  b c d
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (multiline_value))))
+
+
+==================
+Multiline nesting
+==================
+
+a = """
+  b c d
+    g
+   h
+  i
+b = c
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (multiline_value))
+    (pair
+        (key)
+        (value))))
+
+==================
+Multiline indicators
+==================
+
+a = """bash #wow
+  #!/bin/bash
+
+  echo "hello world"
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (multiline_value
+            (multiline_indicator)
+            (comment)
+            ))))
+
+==================
+Multiline Indicators More
+==================
+
+a = """ ba_sh
+  #!/bin/bash
+
+  echo "hello world"
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (multiline_value
+            (multiline_indicator)
+            ))))

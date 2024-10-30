@@ -1,0 +1,107 @@
+==================
+List
+==================
+
+= a
+= b
+
+---
+
+
+(source_file
+    (list
+      (value)
+      (value)))
+
+==================
+Nested Lists
+==================
+
+=
+    = b
+
+---
+
+(source_file
+    (list
+    (list
+        (value))))
+
+==================
+Maps in Lists
+==================
+
+=
+  a = b
+=
+  b = c
+
+---
+
+(source_file
+  (list
+    (map
+      (pair
+        (key)
+        (value)))
+    (map
+      (pair
+        (key)
+        (value)))))
+
+==================
+Lists in Maps
+==================
+
+a =
+  = b
+b =
+  = c
+
+---
+
+(source_file
+  (map
+    (pair
+      (key)
+      (list
+        (value)))
+    (pair
+      (key)
+      (list
+        (value)))))
+
+==================
+Lists with comments
+==================
+
+=#
+  #
+= b #asd
+
+---
+(source_file
+  (list
+    (comment)
+    (map
+      (comment))
+    (value)
+    (comment)))
+
+==================
+Lists with multiline
+==================
+
+=""" #a
+  @
+= """ruby
+  def a
+    puts :stup
+  end
+
+---
+(source_file
+    (list
+    (multiline_value (comment))
+    (multiline_value
+        (multiline_indicator))))

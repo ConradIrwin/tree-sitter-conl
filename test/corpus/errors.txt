@@ -1,0 +1,48 @@
+==================
+Bad outdent
+:error
+==================
+
+a
+    b = b
+  c = c
+
+---
+
+==================
+Unexpected indent
+:error
+==================
+
+a =a
+  b = b
+
+---
+
+==================
+Unexpected list indent
+:error
+==================
+
+= a
+  b = b
+
+---
+
+==================
+Quote in multiline indicator
+:error
+==================
+
+= """ "bash
+
+---
+
+==================
+Non-empty empty
+:error
+==================
+
+a = "{}a
+
+---
