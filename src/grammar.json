@@ -300,8 +300,13 @@
           "name": "_indent"
         },
         {
-          "type": "SYMBOL",
-          "name": "_multiline_fragment"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_multiline_fragment"
+          },
+          "named": true,
+          "value": "multiline_content"
         },
         {
           "type": "SYMBOL",

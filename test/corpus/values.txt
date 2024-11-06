@@ -53,7 +53,7 @@ a = """
     (map
     (pair
         (key)
-        (multiline_value))))
+        (multiline_value (multiline_content)))))
 
 
 ==================
@@ -73,7 +73,7 @@ b = c
     (map
     (pair
         (key)
-        (multiline_value))
+        (multiline_value (multiline_content)))
     (pair
         (key)
         (value))))
@@ -96,6 +96,7 @@ a = """bash #wow
         (multiline_value
             (multiline_indicator)
             (comment)
+            (multiline_content)
             ))))
 
 ==================
@@ -115,6 +116,7 @@ a = """ ba_sh
         (key)
         (multiline_value
             (multiline_indicator)
+            (multiline_content)
             ))))
 
 ==================
@@ -131,6 +133,7 @@ a = """
     (map
     (pair
         (key)
-        (multiline_value)
+        (multiline_value
+            (multiline_content))
         (line_comment)
             )))

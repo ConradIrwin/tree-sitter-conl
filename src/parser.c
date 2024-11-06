@@ -8,12 +8,12 @@
 #define STATE_COUNT 213
 #define LARGE_STATE_COUNT 2
 #define SYMBOL_COUNT 35
-#define ALIAS_COUNT 0
+#define ALIAS_COUNT 1
 #define TOKEN_COUNT 19
 #define EXTERNAL_TOKEN_COUNT 5
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 8
-#define PRODUCTION_ID_COUNT 1
+#define PRODUCTION_ID_COUNT 6
 
 enum ts_symbol_identifiers {
   sym__space = 1,
@@ -50,6 +50,7 @@ enum ts_symbol_identifiers {
   aux_sym_key_repeat1 = 32,
   aux_sym_value_repeat1 = 33,
   aux_sym__multiline_fragment_repeat1 = 34,
+  alias_sym_multiline_content = 35,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -88,6 +89,7 @@ static const char * const ts_symbol_names[] = {
   [aux_sym_key_repeat1] = "key_repeat1",
   [aux_sym_value_repeat1] = "value_repeat1",
   [aux_sym__multiline_fragment_repeat1] = "_multiline_fragment_repeat1",
+  [alias_sym_multiline_content] = "multiline_content",
 };
 
 static const TSSymbol ts_symbol_map[] = {
@@ -126,6 +128,7 @@ static const TSSymbol ts_symbol_map[] = {
   [aux_sym_key_repeat1] = aux_sym_key_repeat1,
   [aux_sym_value_repeat1] = aux_sym_value_repeat1,
   [aux_sym__multiline_fragment_repeat1] = aux_sym__multiline_fragment_repeat1,
+  [alias_sym_multiline_content] = alias_sym_multiline_content,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -269,13 +272,35 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = false,
   },
+  [alias_sym_multiline_content] = {
+    .visible = true,
+    .named = true,
+  },
 };
 
 static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
   [0] = {0},
+  [1] = {
+    [2] = alias_sym_multiline_content,
+  },
+  [2] = {
+    [3] = alias_sym_multiline_content,
+  },
+  [3] = {
+    [4] = alias_sym_multiline_content,
+  },
+  [4] = {
+    [5] = alias_sym_multiline_content,
+  },
+  [5] = {
+    [6] = alias_sym_multiline_content,
+  },
 };
 
 static const uint16_t ts_non_terminal_alias_map[] = {
+  sym__multiline_fragment, 2,
+    sym__multiline_fragment,
+    alias_sym_multiline_content,
   0,
 };
 
@@ -3075,7 +3100,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [301] = {.entry = {.count = 1, .reusable = true}}, SHIFT(124),
   [303] = {.entry = {.count = 1, .reusable = true}}, SHIFT(134),
   [305] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__multiline_fragment, 1, 0, 0),
-  [307] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 6, 0, 0),
+  [307] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 6, 0, 3),
   [309] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_map_repeat1, 2, 0, 0), SHIFT_REPEAT(50),
   [312] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_map_repeat1, 2, 0, 0),
   [314] = {.entry = {.count = 1, .reusable = true}}, SHIFT(131),
@@ -3083,12 +3108,12 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [318] = {.entry = {.count = 1, .reusable = true}}, SHIFT(144),
   [320] = {.entry = {.count = 1, .reusable = true}}, SHIFT(158),
   [322] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_list, 1, 0, 0),
-  [324] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 5, 0, 0),
+  [324] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 5, 0, 2),
   [326] = {.entry = {.count = 1, .reusable = true}}, SHIFT(66),
   [328] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_map, 1, 0, 0),
-  [330] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 8, 0, 0),
-  [332] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 7, 0, 0),
-  [334] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 4, 0, 0),
+  [330] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 8, 0, 5),
+  [332] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 7, 0, 4),
+  [334] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_multiline_value, 4, 0, 1),
   [336] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__multiline_fragment_repeat1, 3, 0, 0),
   [338] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_list, 2, 0, 0),
   [340] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_map_repeat1, 2, 0, 0), SHIFT_REPEAT(66),

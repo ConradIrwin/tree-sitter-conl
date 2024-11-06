@@ -69,15 +69,24 @@
     }
   },
   {
+    "type": "multiline_content",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "multiline_value",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "multiline_content",
           "named": true
         },
         {

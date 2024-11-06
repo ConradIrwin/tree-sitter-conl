@@ -67,7 +67,7 @@ module.exports = grammar({
         optional($._space),
         optional($.comment),
         $._indent,
-        $._multiline_fragment,
+        alias($._multiline_fragment, $.multiline_content),
         $._outdent,
       ),
 

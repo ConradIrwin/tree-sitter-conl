@@ -101,6 +101,6 @@ Lists with multiline
 ---
 (source_file
     (list
-    (multiline_value (comment))
+    (multiline_value (comment) (multiline_content))
     (multiline_value
-        (multiline_indicator))))
+        (multiline_indicator) (multiline_content))))
