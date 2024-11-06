@@ -116,3 +116,21 @@ a = """ ba_sh
         (multiline_value
             (multiline_indicator)
             ))))
+
+==================
+Multiline Comments
+==================
+
+a = """
+  #!/bin/bash
+# hello
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (multiline_value)
+        (line_comment)
+            )))

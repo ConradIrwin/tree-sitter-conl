@@ -6,6 +6,7 @@ enum TokenType {
   ENDFILE,
   INDENT,
   OUTDENT,
+  LINE_COMMENT
 };
 
 typedef struct {
@@ -85,6 +86,16 @@ bool tree_sitter_conl_external_scanner_scan(void *payload, TSLexer *lexer, const
             array_push(&new_indent, lexer->lookahead);
             lexer->advance(lexer, false);
         }
+    }
+
+    if (lexer->lookahead == '#' && valid_symbols[LINE_COMMENT]) {
+        while (!is_newline(lexer->lookahead) && !lexer->eof(lexer)) {
+            lexer->advance(lexer, false);
+        }
+        array_delete(&new_indent);
+        lexer->mark_end(lexer);
+        lexer->result_symbol = LINE_COMMENT;
+        return true;
     }
 
     size_t last_stop = 0;

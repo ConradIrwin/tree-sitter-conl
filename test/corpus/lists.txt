@@ -83,8 +83,7 @@ Lists with comments
 (source_file
   (list
     (comment)
-    (map
-      (comment))
+    (line_comment)
     (value)
     (comment)))
 

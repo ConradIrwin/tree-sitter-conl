@@ -24,10 +24,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "comment",
+          "named": true
+        },
+        {
+          "type": "line_comment",
           "named": true
         },
         {
@@ -57,10 +61,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
         {
           "type": "pair",
           "named": true
@@ -104,6 +104,10 @@
           "named": true
         },
         {
+          "type": "line_comment",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -128,9 +132,13 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "line_comment",
+          "named": true
+        },
         {
           "type": "list",
           "named": true
@@ -179,6 +187,10 @@
   },
   {
     "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "line_comment",
     "named": true
   },
   {

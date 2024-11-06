@@ -123,6 +123,22 @@ a
         )))
 
 ==================
+Empties
+==================
+
+a
+b
+
+---
+
+(source_file
+  (map
+    (pair
+        (key))
+    (pair
+        (key))))
+
+==================
 Commentier
 ==================
 
@@ -130,22 +146,22 @@ Commentier
 a
   b
     # empty
+    = 1
   # no more
 
 ---
 
 (source_file
+  (line_comment)
   (map
-    (comment)
     (pair
         (key)
         (map
             (pair
                 (key)
-                (map
-                    (comment))
-                )
-            (comment))
+                (line_comment)
+                    (list (value)
+            (line_comment))))
         )))
 
 ==================
@@ -179,6 +195,5 @@ d =#
     (pair
         (key)
         (comment)
-        (map
-        (comment))
+        (line_comment)
         )))
