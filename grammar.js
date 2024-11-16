@@ -34,7 +34,7 @@ module.exports = grammar({
     _space: ($) => /[ \t]+/,
     comment: ($) => /#[^\r\n]*/,
     _equals: ($) => seq(/[ \t]+/, "="),
-    escape_sequence: ($) => /\\(\\|"|r|n|t|\{[0-9a-fA-F]{1,6}\})/,
+    escape_sequence: ($) => /\\(\\|"|r|n|t|\{[0-9a-fA-F]{1,8}\})/,
     _quoted_literal: ($) =>
       seq('"', repeat(choice(/[^"\\\r\n]+/, $.escape_sequence)), '"'),
     _unquoted_value: ($) => /[^"# \t\r\n]([^ \t\r\n]|[ \t]+[^# \t\r\n])*/,
