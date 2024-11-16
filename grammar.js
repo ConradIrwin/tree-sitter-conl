@@ -34,28 +34,19 @@ module.exports = grammar({
     _space: ($) => /[ \t]+/,
     comment: ($) => /#[^\r\n]*/,
     _equals: ($) => seq(/[ \t]+/, "="),
-    escape_sequence: ($) => /"(["#=_>\\\/]|\{[0-9a-fA-F]{1,6}\})/,
+    escape_sequence: ($) => /\\(\\|"|r|n|t|\{[0-9a-fA-F]{1,6}\})/,
+    _quoted_literal: ($) =>
+      seq('"', repeat(choice(/[^"\\\r\n]+/, $.escape_sequence)), '"'),
+    _unquoted_value: ($) => /[^"# \t\r\n]([^ \t\r\n]|[ \t]+[^# \t\r\n])*/,
     empty: ($) => '"{}',
 
     key: ($) =>
       choice(
-        $.empty,
-        seq(
-          choice($.escape_sequence, /[^ \t\r\n#="]/),
-          repeat(
-            choice(/[^ \t\r\n"]/, $.escape_sequence, /[ \t]+[^ \t\r\n#=]/),
-          ),
-        ),
+        $._quoted_literal,
+        /[^"=# \t\r\n]([^= \t\r\n]|[ \t]+[^#= \t\r\n])*/,
       ),
 
-    value: ($) =>
-      choice(
-        $.empty,
-        seq(
-          choice($.escape_sequence, /[^ \t\r\n#"]/),
-          repeat(choice(/[^ \t\r\n"]/, $.escape_sequence, /[ \t]+[^ \t\r\n#]/)),
-        ),
-      ),
+    value: ($) => choice($._quoted_literal, $._unquoted_value),
 
     _line_comments: ($) => repeat1($.line_comment),
 
@@ -71,7 +62,7 @@ module.exports = grammar({
         $._outdent,
       ),
 
-    multiline_indicator: ($) => /[^ \t\r\n"#=_>\\\/][^ \t\r\n"]*/,
+    multiline_indicator: ($) => /[^# \t\r\n]([^ \t\r\n]|[ \t]+[^# \t\r\n])*/,
 
     _multiline_fragment: ($) =>
       prec.right(
@@ -93,7 +84,8 @@ module.exports = grammar({
         choice(
           seq(
             $.value,
-            optional(seq($._space, optional($.comment))),
+            optional($._space),
+            optional($.comment),
             optional($._line_comments),
           ),
           seq($.multiline_value, optional($._line_comments)),
@@ -111,7 +103,8 @@ module.exports = grammar({
         choice(
           seq(optional($._space), $._item),
           seq(
-            optional(seq($._space, optional($.comment))),
+            optional($._space),
+            optional($.comment),
             optional($._line_comments),
             optional(seq($._indent, $._section, $._outdent)),
           ),

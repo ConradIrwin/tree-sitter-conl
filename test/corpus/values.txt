@@ -1,9 +1,9 @@
 ==================
-Escapes
+Quoted
 ==================
 
-"_"=#= = a"# =
-"{123} = "{}
+"\t=\n= "= "a\\ ="
+"\{123}" = ""
 
 ---
 
@@ -18,8 +18,7 @@ Escapes
     (pair
         (key
             (escape_sequence))
-        (value
-          (empty)))))
+        (value))))
 
 ==================
 Comments
@@ -39,6 +38,48 @@ b = a #
         (key)
         (value)
         (comment))))
+
+==================
+Comments & Quotes
+==================
+
+"a"="a"#
+"b"#
+  value = """#wow
+    wow
+  value = """2#wow
+    .
+  value = """ bash #wow
+    .
+
+---
+
+(source_file
+    (map
+    (pair
+        (key)
+        (value)
+        (comment))
+    (pair
+        (key)
+        (comment)
+        (map
+        (pair
+            (key)
+            (multiline_value
+            (comment)
+            (multiline_content)))
+        (pair
+            (key)
+            (multiline_value
+            (multiline_indicator)
+            (multiline_content)))
+        (pair
+            (key)
+            (multiline_value
+            (multiline_indicator)
+            (comment)
+            (multiline_content)))))))
 
 ==================
 Multiline

@@ -8,10 +8,6 @@
       "required": false,
       "types": [
         {
-          "type": "empty",
-          "named": true
-        },
-        {
           "type": "escape_sequence",
           "named": true
         }
@@ -168,15 +164,15 @@
       "required": false,
       "types": [
         {
-          "type": "empty",
-          "named": true
-        },
-        {
           "type": "escape_sequence",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "\"",
+    "named": false
   },
   {
     "type": "\"\"\"",
@@ -188,10 +184,6 @@
   },
   {
     "type": "comment",
-    "named": true
-  },
-  {
-    "type": "empty",
     "named": true
   },
   {
