@@ -86,7 +86,7 @@
           "named": true
         },
         {
-          "type": "multiline_indicator",
+          "type": "multiline_hint",
           "named": true
         }
       ]
@@ -195,7 +195,7 @@
     "named": true
   },
   {
-    "type": "multiline_indicator",
+    "type": "multiline_hint",
     "named": true
   }
 ]

@@ -24,8 +24,8 @@ Quoted
 Comments
 ==================
 
-a = a#
-b = a #
+a = a;
+b = a ;
 
 ---
 
@@ -33,7 +33,8 @@ b = a #
     (map
     (pair
         (key)
-        (value))
+        (value)
+        (comment))
     (pair
         (key)
         (value)
@@ -43,13 +44,13 @@ b = a #
 Comments & Quotes
 ==================
 
-"a"="a"#
-"b"#
-  value = """#wow
+"a"="a";
+"b";
+  value = """;wow
     wow
-  value = """2#wow
+  value = """2;wow
     .
-  value = """ bash #wow
+  value = """ bash ;wow
     .
 
 ---
@@ -72,12 +73,13 @@ Comments & Quotes
         (pair
             (key)
             (multiline_value
-            (multiline_indicator)
+            (multiline_hint)
+            (comment)
             (multiline_content)))
         (pair
             (key)
             (multiline_value
-            (multiline_indicator)
+            (multiline_hint)
             (comment)
             (multiline_content)))))))
 
@@ -123,7 +125,7 @@ b = c
 Multiline indicators
 ==================
 
-a = """bash #wow
+a = """bash ;wow
   #!/bin/bash
 
   echo "hello world"
@@ -135,7 +137,7 @@ a = """bash #wow
     (pair
         (key)
         (multiline_value
-            (multiline_indicator)
+            (multiline_hint)
             (comment)
             (multiline_content)
             ))))
@@ -146,8 +148,8 @@ Multiline Indicators More
 
 a = """ ba_sh
   #!/bin/bash
-
-  echo "hello world"
+  ;
+  echo "hello world"; exit 1
 
 ---
 
@@ -156,7 +158,7 @@ a = """ ba_sh
     (pair
         (key)
         (multiline_value
-            (multiline_indicator)
+            (multiline_hint)
             (multiline_content)
             ))))
 
@@ -165,8 +167,8 @@ Multiline Comments
 ==================
 
 a = """
-  #!/bin/bash
-# hello
+  ;
+; hello
 
 ---
 

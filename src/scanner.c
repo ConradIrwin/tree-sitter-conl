@@ -88,7 +88,7 @@ bool tree_sitter_conl_external_scanner_scan(void *payload, TSLexer *lexer, const
         }
     }
 
-    if (lexer->lookahead == '#' && valid_symbols[LINE_COMMENT]) {
+    if (lexer->lookahead == ';' && valid_symbols[LINE_COMMENT]) {
         while (!is_newline(lexer->lookahead) && !lexer->eof(lexer)) {
             lexer->advance(lexer, false);
         }

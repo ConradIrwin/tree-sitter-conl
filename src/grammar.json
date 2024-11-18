@@ -116,7 +116,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "#[^\\r\\n]*"
+      "value": ";[^\\r\\n]*"
     },
     "_equals": {
       "type": "SEQ",
@@ -133,7 +133,7 @@
     },
     "escape_sequence": {
       "type": "PATTERN",
-      "value": "\\\\(\\\\|\"|r|n|t|\\{[0-9a-fA-F]{1,6}\\})"
+      "value": "\\\\(\\\\|\"|r|n|t|\\{[0-9a-fA-F]{1,8}\\})"
     },
     "_quoted_literal": {
       "type": "SEQ",
@@ -166,7 +166,7 @@
     },
     "_unquoted_value": {
       "type": "PATTERN",
-      "value": "[^\"# \\t\\r\\n]([^ \\t\\r\\n]|[ \\t]+[^# \\t\\r\\n])*"
+      "value": "[^\"; \\t\\r\\n]([^; \\t\\r\\n]|[ \\t]+[^; \\t\\r\\n])*"
     },
     "empty": {
       "type": "STRING",
@@ -181,7 +181,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "[^\"=# \\t\\r\\n]([^= \\t\\r\\n]|[ \\t]+[^#= \\t\\r\\n])*"
+          "value": "[^\"=; \\t\\r\\n]([^=; \\t\\r\\n]|[ \\t]+[^=; \\t\\r\\n])*"
         }
       ]
     },
@@ -229,7 +229,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "multiline_indicator"
+              "name": "multiline_hint"
             },
             {
               "type": "BLANK"
@@ -279,9 +279,9 @@
         }
       ]
     },
-    "multiline_indicator": {
+    "multiline_hint": {
       "type": "PATTERN",
-      "value": "[^# \\t\\r\\n]([^ \\t\\r\\n]|[ \\t]+[^# \\t\\r\\n])*"
+      "value": "[^; \\t\\r\\n]([^; \\t\\r\\n]|[ \\t]+[^; \\t\\r\\n])*"
     },
     "_multiline_fragment": {
       "type": "PREC_RIGHT",

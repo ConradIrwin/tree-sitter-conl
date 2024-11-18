@@ -32,18 +32,18 @@ module.exports = grammar({
     list: ($) => seq($._item, repeat(seq($._newline, $._item))),
 
     _space: ($) => /[ \t]+/,
-    comment: ($) => /#[^\r\n]*/,
+    comment: ($) => /;[^\r\n]*/,
     _equals: ($) => seq(/[ \t]+/, "="),
     escape_sequence: ($) => /\\(\\|"|r|n|t|\{[0-9a-fA-F]{1,8}\})/,
     _quoted_literal: ($) =>
       seq('"', repeat(choice(/[^"\\\r\n]+/, $.escape_sequence)), '"'),
-    _unquoted_value: ($) => /[^"# \t\r\n]([^ \t\r\n]|[ \t]+[^# \t\r\n])*/,
+    _unquoted_value: ($) => /[^"; \t\r\n]([^; \t\r\n]|[ \t]+[^; \t\r\n])*/,
     empty: ($) => '"{}',
 
     key: ($) =>
       choice(
         $._quoted_literal,
-        /[^"=# \t\r\n]([^= \t\r\n]|[ \t]+[^#= \t\r\n])*/,
+        /[^"=; \t\r\n]([^=; \t\r\n]|[ \t]+[^=; \t\r\n])*/,
       ),
 
     value: ($) => choice($._quoted_literal, $._unquoted_value),
@@ -54,7 +54,7 @@ module.exports = grammar({
       seq(
         '"""',
         optional($._space),
-        optional($.multiline_indicator),
+        optional($.multiline_hint),
         optional($._space),
         optional($.comment),
         $._indent,
@@ -62,7 +62,7 @@ module.exports = grammar({
         $._outdent,
       ),
 
-    multiline_indicator: ($) => /[^# \t\r\n]([^ \t\r\n]|[ \t]+[^# \t\r\n])*/,
+    multiline_hint: ($) => /[^; \t\r\n]([^; \t\r\n]|[ \t]+[^; \t\r\n])*/,
 
     _multiline_fragment: ($) =>
       prec.right(

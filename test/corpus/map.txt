@@ -142,12 +142,12 @@ b
 Commentier
 ==================
 
-# a
+; a
 a
   b
-    # empty
+    ; empty
     = 1
-  # no more
+  ; no more
 
 ---
 
@@ -168,13 +168,13 @@ a
 Inline comments
 ==================
 
-a # a
+a ; a
 
-  b = # comment
-    c = c # comment
+  b = ; comment
+    c = c ; comment
 
-d =#
-  #
+d =;
+  ;
 ---
 (source_file
     (map

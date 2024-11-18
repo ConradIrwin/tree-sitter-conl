@@ -75,9 +75,9 @@ b =
 Lists with comments
 ==================
 
-=#
-  #
-= b #asd
+=;
+  ;
+= b ;asd
 
 ---
 (source_file
@@ -91,7 +91,7 @@ Lists with comments
 Lists with multiline
 ==================
 
-=""" #a
+=""" ;a
   @
 = """ruby
   def a
@@ -103,4 +103,4 @@ Lists with multiline
     (list
     (multiline_value (comment) (multiline_content))
     (multiline_value
-        (multiline_indicator) (multiline_content))))
+        (multiline_hint) (multiline_content))))
