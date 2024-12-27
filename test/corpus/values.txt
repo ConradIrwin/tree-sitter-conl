@@ -8,17 +8,15 @@ Quoted
 ---
 
 (source_file
-    (map
-    (pair
-        (key
-            (escape_sequence)
-            (escape_sequence))
-        (value
-          (escape_sequence)))
-    (pair
-        (key
-            (escape_sequence))
-        (value))))
+  (map
+    (key
+      (escape_sequence)
+      (escape_sequence))
+    (value
+      (escape_sequence))
+    (key
+      (escape_sequence))
+    (value)))
 
 ==================
 Comments
@@ -30,15 +28,13 @@ b = a ;
 ---
 
 (source_file
-    (map
-    (pair
-        (key)
-        (value)
-        (comment))
-    (pair
-        (key)
-        (value)
-        (comment))))
+  (map
+    (key)
+    (value)
+    (comment)
+    (key)
+    (value)
+    (comment)))
 
 ==================
 Comments & Quotes
@@ -56,32 +52,27 @@ Comments & Quotes
 ---
 
 (source_file
+  (map
+    (key)
+    (value)
+    (comment)
+    (key)
+    (comment)
     (map
-    (pair
-        (key)
-        (value)
-        (comment))
-    (pair
-        (key)
+      (key)
+      (multiline_value
         (comment)
-        (map
-        (pair
-            (key)
-            (multiline_value
-            (comment)
-            (multiline_content)))
-        (pair
-            (key)
-            (multiline_value
-            (multiline_hint)
-            (comment)
-            (multiline_content)))
-        (pair
-            (key)
-            (multiline_value
-            (multiline_hint)
-            (comment)
-            (multiline_content)))))))
+        (multiline_content))
+      (key)
+      (multiline_value
+        (multiline_hint)
+        (comment)
+        (multiline_content))
+      (key)
+      (multiline_value
+        (multiline_hint)
+        (comment)
+        (multiline_content)))))
 
 ==================
 Multiline
@@ -93,11 +84,10 @@ a = """
 ---
 
 (source_file
-    (map
-    (pair
-        (key)
-        (multiline_value (multiline_content)))))
-
+  (map
+    (key)
+    (multiline_value
+      (multiline_content))))
 
 ==================
 Multiline nesting
@@ -113,13 +103,12 @@ b = c
 ---
 
 (source_file
-    (map
-    (pair
-        (key)
-        (multiline_value (multiline_content)))
-    (pair
-        (key)
-        (value))))
+  (map
+    (key)
+    (multiline_value
+      (multiline_content))
+    (key)
+    (value)))
 
 ==================
 Multiline indicators
@@ -133,14 +122,12 @@ a = """bash ;wow
 ---
 
 (source_file
-    (map
-    (pair
-        (key)
-        (multiline_value
-            (multiline_hint)
-            (comment)
-            (multiline_content)
-            ))))
+  (map
+    (key)
+    (multiline_value
+      (multiline_hint)
+      (comment)
+      (multiline_content))))
 
 ==================
 Multiline Indicators More
@@ -154,13 +141,11 @@ a = """ ba_sh
 ---
 
 (source_file
-    (map
-    (pair
-        (key)
-        (multiline_value
-            (multiline_hint)
-            (multiline_content)
-            ))))
+  (map
+    (key)
+    (multiline_value
+      (multiline_hint)
+      (multiline_content))))
 
 ==================
 Multiline Comments
@@ -173,10 +158,8 @@ a = """
 ---
 
 (source_file
-    (map
-    (pair
-        (key)
-        (multiline_value
-            (multiline_content))
-        (line_comment)
-            )))
+  (map
+    (key)
+    (multiline_value
+      (multiline_content))
+    (line_comment)))
