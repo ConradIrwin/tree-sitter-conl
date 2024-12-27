@@ -7,11 +7,10 @@ List
 
 ---
 
-
 (source_file
-    (list
-      (value)
-      (value)))
+  (list
+    (value)
+    (value)))
 
 ==================
 Nested Lists
@@ -23,9 +22,9 @@ Nested Lists
 ---
 
 (source_file
+  (list
     (list
-    (list
-        (value))))
+      (value))))
 
 ==================
 Maps in Lists
@@ -41,13 +40,11 @@ Maps in Lists
 (source_file
   (list
     (map
-      (pair
-        (key)
-        (value)))
+      (key)
+      (value))
     (map
-      (pair
-        (key)
-        (value)))))
+      (key)
+      (value))))
 
 ==================
 Lists in Maps
@@ -62,14 +59,12 @@ b =
 
 (source_file
   (map
-    (pair
-      (key)
-      (list
-        (value)))
-    (pair
-      (key)
-      (list
-        (value)))))
+    (key)
+    (list
+      (value))
+    (key)
+    (list
+      (value))))
 
 ==================
 Lists with comments
@@ -80,6 +75,7 @@ Lists with comments
 = b ;asd
 
 ---
+
 (source_file
   (list
     (comment)
@@ -99,8 +95,12 @@ Lists with multiline
   end
 
 ---
+
 (source_file
-    (list
-    (multiline_value (comment) (multiline_content))
+  (list
     (multiline_value
-        (multiline_hint) (multiline_content))))
+      (comment)
+      (multiline_content))
+    (multiline_value
+      (multiline_hint)
+      (multiline_content))))
