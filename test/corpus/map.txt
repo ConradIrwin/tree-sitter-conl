@@ -17,12 +17,10 @@ b = b
 
 (source_file
   (map
-    (pair
-        (key)
-        (value))
-    (pair
-        (key)
-        (value))))
+    (key)
+    (value)
+    (key)
+    (value)))
 
 ==================
 Nested Map
@@ -36,12 +34,10 @@ a
 
 (source_file
   (map
-    (pair
-        (key)
-        (map
-        (pair
-            (key)
-            (value))))))
+    (key)
+    (map
+      (key)
+      (value))))
 
 ==================
 Nested Closed
@@ -55,16 +51,12 @@ c = c
 
 (source_file
   (map
-    (pair
-        (key)
-        (map
-            (pair
-                (key)
-                (value)))
-        )
-    (pair
-        (key)
-        (value))))
+    (key)
+    (map
+      (key)
+      (value))
+    (key)
+    (value)))
 
 ==================
 Nested Double Closed
@@ -79,20 +71,14 @@ d = d
 
 (source_file
   (map
-    (pair
+    (key)
+    (map
+      (key)
+      (map
         (key)
-        (map
-            (pair
-                (key)
-                (map
-                    (pair
-                    (key)
-                    (value)))
-                ))
-        )
-    (pair
-        (key)
-        (value))))
+        (value)))
+    (key)
+    (value)))
 
 ==================
 Nested Half Closed
@@ -107,20 +93,14 @@ a
 
 (source_file
   (map
-    (pair
+    (key)
+    (map
+      (key)
+      (map
         (key)
-        (map
-            (pair
-                (key)
-                (map
-                    (pair
-                    (key)
-                    (value)))
-                )
-            (pair
-                (key)
-                (value)))
-        )))
+        (value))
+      (key)
+      (value))))
 
 ==================
 Empties
@@ -133,10 +113,8 @@ b
 
 (source_file
   (map
-    (pair
-        (key))
-    (pair
-        (key))))
+    (key)
+    (key)))
 
 ==================
 Commentier
@@ -154,15 +132,13 @@ a
 (source_file
   (line_comment)
   (map
-    (pair
-        (key)
-        (map
-            (pair
-                (key)
-                (line_comment)
-                    (list (value)
-            (line_comment))))
-        )))
+    (key)
+    (map
+      (key)
+      (line_comment)
+      (list
+        (value)
+        (line_comment)))))
 
 ==================
 Inline comments
@@ -176,24 +152,18 @@ a ; a
 d =;
   ;
 ---
+
 (source_file
+  (map
+    (key)
+    (comment)
     (map
-    (pair
+      (key)
+      (comment)
+      (map
         (key)
-        (comment)
-        (map
-        (pair
-            (key)
-            (comment)
-            (map
-            (pair
-                (key)
-                (value)
-                (comment)))
-            ))
-        )
-    (pair
-        (key)
-        (comment)
-        (line_comment)
-        )))
+        (value)
+        (comment)))
+    (key)
+    (comment)
+    (line_comment)))

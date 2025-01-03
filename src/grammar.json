@@ -65,7 +65,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "pair"
+          "name": "_pair"
         },
         {
           "type": "REPEAT",
@@ -78,7 +78,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "pair"
+                "name": "_pair"
               }
             ]
           }
@@ -480,7 +480,7 @@
         }
       ]
     },
-    "pair": {
+    "_pair": {
       "type": "SEQ",
       "members": [
         {

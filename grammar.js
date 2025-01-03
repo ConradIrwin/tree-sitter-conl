@@ -28,7 +28,7 @@ module.exports = grammar({
       ),
 
     _section: ($) => choice($.map, $.list),
-    map: ($) => seq($.pair, repeat(seq($._newline, $.pair))),
+    map: ($) => seq($._pair, repeat(seq($._newline, $._pair))),
     list: ($) => seq($._item, repeat(seq($._newline, $._item))),
 
     _space: ($) => /[ \t]+/,
@@ -97,7 +97,7 @@ module.exports = grammar({
         ),
       ),
 
-    pair: ($) =>
+    _pair: ($) =>
       seq(
         $.key,
         choice(
