@@ -94,6 +94,11 @@
     "fields": {}
   },
   {
+    "type": "multiline_hint",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "multiline_value",
     "named": true,
     "fields": {},
@@ -177,10 +182,6 @@
   },
   {
     "type": "line_comment",
-    "named": true
-  },
-  {
-    "type": "multiline_hint",
     "named": true
   }
 ]

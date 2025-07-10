@@ -6,16 +6,11 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_line_comments"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "line_comment"
+          }
         },
         {
           "type": "CHOICE",
@@ -118,19 +113,6 @@
       "type": "PATTERN",
       "value": ";[^\\r\\n]*"
     },
-    "_equals": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[ \\t]+"
-        },
-        {
-          "type": "STRING",
-          "value": "="
-        }
-      ]
-    },
     "escape_sequence": {
       "type": "PATTERN",
       "value": "\\\\(\\\\|\"|r|n|t|\\{[0-9a-fA-F]{1,8}\\})"
@@ -168,9 +150,9 @@
       "type": "PATTERN",
       "value": "[^\"; \\t\\r\\n]([^; \\t\\r\\n]|[ \\t]+[^; \\t\\r\\n])*"
     },
-    "empty": {
-      "type": "STRING",
-      "value": "\"{}"
+    "_unquoted_key": {
+      "type": "PATTERN",
+      "value": "[^\"=; \\t\\r\\n]([^=; \\t\\r\\n]|[ \\t]+[^=; \\t\\r\\n])*"
     },
     "key": {
       "type": "CHOICE",
@@ -180,8 +162,8 @@
           "name": "_quoted_literal"
         },
         {
-          "type": "PATTERN",
-          "value": "[^\"=; \\t\\r\\n]([^=; \\t\\r\\n]|[ \\t]+[^=; \\t\\r\\n])*"
+          "type": "SYMBOL",
+          "name": "_unquoted_key"
         }
       ]
     },
@@ -198,12 +180,9 @@
         }
       ]
     },
-    "_line_comments": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "line_comment"
-      }
+    "multiline_hint": {
+      "type": "SYMBOL",
+      "name": "_unquoted_value"
     },
     "multiline_value": {
       "type": "SEQ",
@@ -278,10 +257,6 @@
           "name": "_outdent"
         }
       ]
-    },
-    "multiline_hint": {
-      "type": "PATTERN",
-      "value": "[^; \\t\\r\\n]([^; \\t\\r\\n]|[ \\t]+[^; \\t\\r\\n])*"
     },
     "_multiline_fragment": {
       "type": "PREC_RIGHT",
@@ -388,16 +363,11 @@
                   ]
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_line_comments"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "line_comment"
+                  }
                 }
               ]
             },
@@ -409,16 +379,11 @@
                   "name": "multiline_value"
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_line_comments"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "line_comment"
+                  }
                 }
               ]
             },
@@ -438,16 +403,11 @@
                   ]
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_line_comments"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "line_comment"
+                  }
                 },
                 {
                   "type": "CHOICE",
@@ -539,16 +499,11 @@
                   ]
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_line_comments"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "line_comment"
+                  }
                 },
                 {
                   "type": "CHOICE",
@@ -608,5 +563,6 @@
     }
   ],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }

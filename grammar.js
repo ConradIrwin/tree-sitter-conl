@@ -21,7 +21,7 @@ module.exports = grammar({
   rules: {
     source_file: ($) =>
       seq(
-        optional($._line_comments),
+        repeat($.line_comment),
         optional($._newline),
         optional($._section),
         $._endfile,
@@ -33,23 +33,16 @@ module.exports = grammar({
 
     _space: ($) => /[ \t]+/,
     comment: ($) => /;[^\r\n]*/,
-    _equals: ($) => seq(/[ \t]+/, "="),
     escape_sequence: ($) => /\\(\\|"|r|n|t|\{[0-9a-fA-F]{1,8}\})/,
     _quoted_literal: ($) =>
       seq('"', repeat(choice(/[^"\\\r\n]+/, $.escape_sequence)), '"'),
     _unquoted_value: ($) => /[^"; \t\r\n]([^; \t\r\n]|[ \t]+[^; \t\r\n])*/,
-    empty: ($) => '"{}',
+    _unquoted_key: ($) => /[^"=; \t\r\n]([^=; \t\r\n]|[ \t]+[^=; \t\r\n])*/,
 
-    key: ($) =>
-      choice(
-        $._quoted_literal,
-        /[^"=; \t\r\n]([^=; \t\r\n]|[ \t]+[^=; \t\r\n])*/,
-      ),
-
+    key: ($) => choice($._quoted_literal, $._unquoted_key),
     value: ($) => choice($._quoted_literal, $._unquoted_value),
 
-    _line_comments: ($) => repeat1($.line_comment),
-
+    multiline_hint: ($) => $._unquoted_value,
     multiline_value: ($) =>
       seq(
         '"""',
@@ -61,9 +54,6 @@ module.exports = grammar({
         alias($._multiline_fragment, $.multiline_content),
         $._outdent,
       ),
-
-    multiline_hint: ($) => /[^; \t\r\n]([^; \t\r\n]|[ \t]+[^; \t\r\n])*/,
-
     _multiline_fragment: ($) =>
       prec.right(
         seq(
@@ -86,12 +76,12 @@ module.exports = grammar({
             $.value,
             optional($._space),
             optional($.comment),
-            optional($._line_comments),
+            repeat($.line_comment),
           ),
-          seq($.multiline_value, optional($._line_comments)),
+          seq($.multiline_value, repeat($.line_comment)),
           seq(
             optional($.comment),
-            optional($._line_comments),
+            repeat($.line_comment),
             optional(seq($._indent, $._section, $._outdent)),
           ),
         ),
@@ -105,7 +95,7 @@ module.exports = grammar({
           seq(
             optional($._space),
             optional($.comment),
-            optional($._line_comments),
+            repeat($.line_comment),
             optional(seq($._indent, $._section, $._outdent)),
           ),
         ),
