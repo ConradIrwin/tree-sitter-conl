@@ -48,8 +48,8 @@ void tree_sitter_conl_external_scanner_deserialize(
     if (length == 0) {
         return;
     }
-    scanner->indents.size = length;
-    memcpy(scanner->indents.contents, buffer, length);
+    array_init(&scanner->indents);
+    array_extend(&scanner->indents, length, buffer);
 }
 
 #define CHAR_MASK (0x7F)
@@ -107,7 +107,9 @@ bool tree_sitter_conl_external_scanner_scan(void *payload, TSLexer *lexer, const
     }
 
     if (!is_true_prefix || new_indent.size < scanner->indents.size) {
-        array_pop(&scanner->indents);
+        if (scanner->indents.size) {
+            array_pop(&scanner->indents);
+        }
         while (scanner->indents.size && !is_stop(*array_back(&scanner->indents))) {
             array_pop(&scanner->indents);
         }
