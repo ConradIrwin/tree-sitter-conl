@@ -58,31 +58,7 @@
       "required": true,
       "types": [
         {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "key",
-          "named": true
-        },
-        {
-          "type": "line_comment",
-          "named": true
-        },
-        {
-          "type": "list",
-          "named": true
-        },
-        {
-          "type": "map",
-          "named": true
-        },
-        {
-          "type": "multiline_value",
-          "named": true
-        },
-        {
-          "type": "value",
+          "type": "pair",
           "named": true
         }
       ]
@@ -116,6 +92,45 @@
         },
         {
           "type": "multiline_hint",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pair",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "key",
+          "named": true
+        },
+        {
+          "type": "line_comment",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "multiline_value",
+          "named": true
+        },
+        {
+          "type": "value",
           "named": true
         }
       ]
